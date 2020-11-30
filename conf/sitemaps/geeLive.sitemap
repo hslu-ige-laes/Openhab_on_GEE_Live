@@ -1,0 +1,160 @@
+sitemap geeLive label="GEE Live"
+{
+	Frame label="Nutzersdaten" {
+
+		Text label="Nutzer" icon="parents_5_1"{
+			Text label="Weitere Daten" 
+		}
+		Text label="Belegung" icon="line"{
+			Text item=Presence_Detection_in icon="motion"
+			Text label="Weitere Daten" 
+		}
+
+	}
+	
+	Frame label="Konfortdaten" {
+		Text item=Temp_Co2Sensor_Kueche valuecolor=[Weather_LastUpdate=="NULL"="lightgray",Weather_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+			Frame {
+				Text item=Weather_Temp_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Weather_Temp_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Weather_LastUpdate visibility=[Weather_LastUpdate>30] valuecolor=[Weather_LastUpdate>120="orange", Weather_LastUpdate>300="red"]
+			}
+			Frame {
+				Switch item=Weather_Chart_Period label="Chart Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+		}
+		Text item=C02_Sensor_Value valuecolor=[CO2_LastUpdate=="NULL"="lightgray",Weather_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+			Frame {
+				Text item=C02_Sensor_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=C02_Sensor_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=CO2_LastUpdate visibility=[Weather_LastUpdate>30] valuecolor=[Weather_LastUpdate>120="orange", Weather_LastUpdate>300="red"]
+			}
+			Frame {
+				Switch item=C02_Sensor_Chart_Period label="Chart Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+		}
+	}
+	Frame label="Energiedaten" {
+		Text label="Energieproduktion" icon="heating" {
+			
+			Group item=PV_Anlage label= "PV Anlage" icon="solarplant"
+
+			Text label="Wärmepumpe" icon="pump"{
+				Switch item=Windspeed_Chart_Period label="Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+
+
+			Text label="Map/Location" {
+				Mapview item=DemoLocation icon=movecontrol height=10
+			}
+		}
+
+		Text label="Energieverbrauch" icon="heating" {
+
+			Text label="E-Mobility" icon="batterylevel" {
+				Switch item=Windspeed_Chart_Period label="Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+				
+			Group item= Hausgeraete label="Haushaltgeräte" icon="kitchen"
+
+			Text label="Gebäudeautomation" icon="energy"{
+				//Default item=PV_Dach_Holding_Reg5B14_int32 icon="energy"
+				Switch item=Windspeed_Chart_Period label="Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+			
+			Text label="HLK" icon="radiator"{
+				//Default item=PV_Dach_Holding_Reg5B14_int32 icon="energy"
+				Switch item=Windspeed_Chart_Period label="Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+
+			Text label="Andere" {
+				Switch item=Windspeed_Chart_Period label="Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+		}
+	}
+	Frame label= "Automation"{
+		Group item=Licht label="Beleuchtung" icon="lightbulb"
+		Group item=Jalousie label="Jalousien" icon="rollershutter"
+		Text label="Multimedia" icon="screen" {
+			Frame label="Radio Control" {
+				Selection item=Radio_Station label="Radio" mappings=[0=off, 1=HR3, 2=SWR3]
+				Slider item=Volume icon="soundvolume"
+			}
+			Frame label="Multimedia Widgets" {
+				Image url="https://raw.github.com/wiki/openhab/openhab/images/features.png" label="openHAB" {
+					Text label="https://www.openHAB.org" icon="icon"
+				}
+			}
+		}
+		Group item=AndereGAs label="Andere Geräte" icon="settings"
+	}
+	Frame label="Lokalwetter" {
+		Text item=Temp_Wetter_Zentrale valuecolor=[Weather_LastUpdate=="NULL"="lightgray",Weather_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+			Frame {
+				Text item=Weather_Temp_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Weather_Temp_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Weather_LastUpdate visibility=[Weather_LastUpdate>30] valuecolor=[Weather_LastUpdate>120="orange", Weather_LastUpdate>300="red"]
+			}
+			Frame {
+				Switch item=Weather_Chart_Period label="Chart Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+		}
+		Text item=Weather_Windspeed_out valuecolor=[Windspeed_LastUpdate=="NULL"="lightgray",Weather_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+			Frame {
+				Text item=Weather_Windspeed_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Weather_Windspeed_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Windspeed_LastUpdate visibility=[Weather_LastUpdate>30] valuecolor=[Weather_LastUpdate>120="orange", Weather_LastUpdate>300="red"]
+			}
+			Frame {
+				Switch item=Windspeed_Chart_Period label="Chart Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+		}
+
+		Text item=Weather_Rain_out valuecolor=[Rain_LastUpdate=="NULL"="lightgray",Weather_LastUpdate>90="lightgray",>25="orange",>15="green",>5="orange",<=5="blue"] {
+			Frame {
+				Text item=Weather_Rain_Max valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Weather_Rain_Min valuecolor=[>25="orange",>15="green",>5="orange",<=5="blue"]
+				Text item=Rain_LastUpdate visibility=[Weather_LastUpdate>30] valuecolor=[Weather_LastUpdate>120="orange", Weather_LastUpdate>300="red"]
+			}
+			Frame {
+				Switch item=Windspeed_Chart_Period label="Chart Period" icon="chart" mappings=[0="Hour", 1="Day", 2="Week"]
+				Chart item=Weather_Chart period=h refresh=600000 visibility=[Weather_Chart_Period==0, Weather_Chart_Period=="NULL"]
+				Chart item=Weather_Chart period=D refresh=3600000 visibility=[Weather_Chart_Period==1]
+				Chart item=Weather_Chart period=W refresh=3600000 visibility=[Weather_Chart_Period==2]
+			}
+		}
+		Text item=CurrentDate
+	}
+	Frame {
+		Image url="http://localhost:8080/static/GEELive.png" label="GEE" {
+					Text label="https://www.hslu.ch/de-ch/technik-architektur/ueber-uns/aktuell/2019/02/19/gee-live/" icon="icon"
+		}
+	}
+}

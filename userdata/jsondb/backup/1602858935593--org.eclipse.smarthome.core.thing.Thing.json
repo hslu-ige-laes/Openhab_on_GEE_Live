@@ -1,0 +1,134 @@
+{
+  "knx:ip:d24b1681": {
+    "class": "org.eclipse.smarthome.core.thing.internal.BridgeImpl",
+    "value": {
+      "label": "KNX/IPGateway",
+      "channels": [],
+      "configuration": {
+        "properties": {
+          "useNAT": false,
+          "readRetriesLimit": 3,
+          "ipAddress": "192.168.10.12",
+          "localIp": "192.168.10.205",
+          "autoReconnectPeriod": 60,
+          "type": "TUNNEL",
+          "localSourceAddr": "0.0.0",
+          "readingPause": 50,
+          "portNumber": 3671,
+          "responseTimeout": 10
+        }
+      },
+      "properties": {},
+      "uid": {
+        "segments": [
+          "knx",
+          "ip",
+          "d24b1681"
+        ]
+      },
+      "thingTypeUID": {
+        "segments": [
+          "knx",
+          "ip"
+        ]
+      }
+    }
+  },
+  "knx:ip:e0638c27": {
+    "class": "org.eclipse.smarthome.core.thing.internal.BridgeImpl",
+    "value": {
+      "label": "ABB KNX/IP Gateway",
+      "channels": [],
+      "configuration": {
+        "properties": {
+          "useNAT": false,
+          "readRetriesLimit": 3,
+          "ipAddress": "192.168.10.32",
+          "localIp": "192.168.10.205",
+          "autoReconnectPeriod": 60,
+          "type": "TUNNEL",
+          "localSourceAddr": "0.0.0",
+          "readingPause": 50,
+          "portNumber": 3671,
+          "responseTimeout": 10
+        }
+      },
+      "properties": {},
+      "uid": {
+        "segments": [
+          "knx",
+          "ip",
+          "e0638c27"
+        ]
+      },
+      "thingTypeUID": {
+        "segments": [
+          "knx",
+          "ip"
+        ]
+      }
+    }
+  },
+  "knx:device:06ca247e": {
+    "class": "org.eclipse.smarthome.core.thing.internal.ThingImpl",
+    "value": {
+      "label": "knxDevice",
+      "bridgeUID": {
+        "segments": [
+          "knx",
+          "ip",
+          "e0638c27"
+        ]
+      },
+      "channels": [
+        {
+          "acceptedItemType": "Switch",
+          "kind": "STATE",
+          "uid": {
+            "segments": [
+              "knx",
+              "device",
+              "06ca247e",
+              "centralLight"
+            ]
+          },
+          "channelTypeUID": {
+            "segments": [
+              "knx",
+              "switch"
+            ]
+          },
+          "configuration": {
+            "properties": {
+              "ga": "1/1/1"
+            }
+          },
+          "properties": {},
+          "defaultTags": []
+        }
+      ],
+      "configuration": {
+        "properties": {
+          "pingInterval": 600,
+          "address": "1.1.2",
+          "readInterval": 0,
+          "fetch": false
+        }
+      },
+      "properties": {},
+      "uid": {
+        "segments": [
+          "knx",
+          "device",
+          "06ca247e"
+        ]
+      },
+      "thingTypeUID": {
+        "segments": [
+          "knx",
+          "device"
+        ]
+      }
+    }
+  }
+}

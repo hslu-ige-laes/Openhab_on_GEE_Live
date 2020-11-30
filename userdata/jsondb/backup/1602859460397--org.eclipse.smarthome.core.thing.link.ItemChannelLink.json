@@ -1,0 +1,19 @@
+{
+  "knx_device_06ca247e_centralLight -\u003e knx:device:06ca247e:centralLight": {
+    "class": "org.eclipse.smarthome.core.thing.link.ItemChannelLink",
+    "value": {
+      "channelUID": {
+        "segments": [
+          "knx",
+          "device",
+          "06ca247e",
+          "centralLight"
+        ]
+      },
+      "configuration": {
+        "properties": {}
+      },
+      "itemName": "knx_device_06ca247e_centralLight"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+Bridge modbus:tcp:localhostTCP_3 [ host="192.168.10.22", port=502, id=3 ] {
+
+    Bridge poller holding [ start=23316, length=2, refresh=300000, type="holding" ] {
+        Thing data holding5B14 [ readStart="23316", readValueType="int32" ]
+        //Thing data holding1502 [ readStart="1502", readValueType="float32" ]
+    }
+    
+}
+Bridge modbus:tcp:localhostTCP_5 [ host="192.168.10.22", port=502, id=5 ] {
+
+    Bridge poller holding [ start=23316, length=2, refresh=300000, type="holding" ] {
+        Thing data holding5B14 [ readStart="23316", readValueType="int32" ]
+        //Thing data holding1502 [ readStart="1502", readValueType="float32" ]
+    }
+    
+}
+Bridge modbus:tcp:localhostTCP_6 [ host="192.168.10.22", port=502, id=6 ] {
+
+    Bridge poller holding [ start=23316, length=2, refresh=300000, type="holding" ] {
+        Thing data holding5B14 [ readStart="23316", readValueType="int32" ]
+        //Thing data holding1502 [ readStart="1502", readValueType="float32" ]
+    }
+   
+}
+Bridge modbus:tcp:localhostTCP_7 [ host="192.168.10.22", port=502, id=7 ] {
+
+    Bridge poller holding [ start=23316, length=2, refresh=300000, type="holding" ] {
+        Thing data holding5B14 [ readStart="23316", readValueType="int32" ]
+        //Thing data holding1502 [ readStart="1502", readValueType="float32" ]
+    }
+   
+}
+Bridge modbus:tcp:localhostTCP_8 [ host="192.168.10.22", port=502, id=8 ] {
+
+    Bridge poller holding [ start=23316, length=2, refresh=300000, type="holding" ] {
+        Thing data holding5B14 [ readStart="23316", readValueType="int32" ]
+        //Thing data holding1502 [ readStart="1502", readValueType="float32" ]
+    }
+    
+}
+Bridge modbus:tcp:localhostTCP_9 [ host="192.168.10.22", port=502, id=9 ] {
+
+    Bridge poller holding [ start=23316, length=2, refresh=300000, type="holding" ] {
+        Thing data holding5B14 [ readStart="23316", readValueType="int32" ]
+        //Thing data holding1502 [ readStart="1502", readValueType="float32" ]
+    }
+    
+}
+Bridge modbus:tcp:localhostTCP_10 [ host="192.168.10.22", port=502, id=10 ] {
+
+    Bridge poller holding [ start=23316, length=2, refresh=300000, type="holding" ] {
+        Thing data holding5B14 [ readStart="23316", readValueType="int32" ]
+        //Thing data holding1502 [ readStart="1502", readValueType="float32" ]
+    }
+    
+}

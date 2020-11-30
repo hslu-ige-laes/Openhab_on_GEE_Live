@@ -1,0 +1,27 @@
+{
+  "ntp:ntp:local": {
+    "class": "org.eclipse.smarthome.config.discovery.internal.DiscoveryResultImpl",
+    "value": {
+      "thingUID": {
+        "segments": [
+          "ntp",
+          "ntp",
+          "local"
+        ]
+      },
+      "thingTypeUID": {
+        "segments": [
+          "ntp",
+          "ntp"
+        ]
+      },
+      "properties": {
+        "timeZone": "Europe/Berlin"
+      },
+      "flag": "NEW",
+      "label": "Lokale Zeit",
+      "timestamp": 1604654254726,
+      "timeToLive": -1
+    }
+  }
+}

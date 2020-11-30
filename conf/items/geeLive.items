@@ -1,0 +1,84 @@
+Group Licht             "Beleuchtung"               <lightbulb>   ["FirstFloor"]
+Group Jalousie          "Jalousie"                  <movecontrol> ["FirstFloor"]    
+Group Hlk               "Heitzung/Luftung"          <heating>     ["FirstFloor"]   
+Group Weather_Chart     "Weather"                   <sun>         ["FirstFloor"]
+Group Multimedia        "Multemedia"                <screen>      ["FirstFloor"]
+Group AndereGAs         "Geräte"                    <settings>    ["FirstFloor"]
+
+Group L_E_kit           "Küche"             <light>         (Licht)   ["Küche"]
+Group L_E_off           "Office"            <light>         (Licht)   ["Office"]
+
+Group J_E_Sued          "Süd Seite"         <blinds>     (Jalousie)   ["Ost"]
+Group J_E_Ost           "Ost Seite"         <blinds>     (Jalousie)   ["Süd"]
+
+Group PV_Anlage         "PV Anlage"
+Group Hausgeraete       "Hausgeräte" 
+
+Group PV_Dach           "PV Dach"                         (PV_Anlage)
+Group PV_Fassade        "PV Fassade"                      (PV_Anlage)
+
+/* Lights */
+
+Switch L_E_Innen      "Küche"         (L_E_kit)         ["Light"]   
+Switch L_E_Aussen     "Office"        (L_E_off)         ["Light"]                               {channel="knx:device:06ca247e:centralLight"}
+
+/* Rollershutters */
+Rollershutter Shutter_Ost_Haupt        "Haupteingang"       (J_E_Ost)       ["Blinds"]          { channel="knx:device:bridge:generic0:ostRollershutter" }
+Rollershutter Shutter_Sued_Haupt       "Haupeingang"        (J_E_Sued)      ["Blinds"]          { channel="knx:device:bridge:generic0:suedRollershutter" } 
+
+
+/* Indoor Temperatures */
+Number Temp_Co2Sensor_Kueche   "Temperature (Office) [%.1f °C]"         <temperature>   (Temperature) ["Temperature"]       { channel="knx:device:bridge:generic2:indoorTemperature" }
+
+/* Indoor Temperatures */
+Number Weather_Temperature_in      "Raumtemperature (Innen) [%.1f °C]" <temperature_cold>   (Weather, Weather_Chart) 
+
+/* Outdoor Temperatures */
+Number Temp_Wetter_Zentrale   "Temperature (Aussen) [%.1f °C]"         <temperature>   (Temperature) ["Temperature"]        { channel="knx:device:bridge:generic1:outdoorTemperature" }
+
+/* Office Presence detection */ 
+Contact Presence_Detection_in        "Office [MAP(de.map):%s]"                <contact>     { channel="knx:device:bridge:generic3:PresenceContact" }
+
+/* Indoor Carbondioxide */
+Number C02_Sensor_Value             "Kohlenstoffdioxid (Office) [%.1f ppm]"      <carbondioxide>       (Weather, Weather_Chart)      { channel="knx:device:bridge:generic2:indoorCarbonDioxide" }
+Number C02_Sensor_Max               "Todays Maximum [%.1f ppm]"                  <carbondioxide>       (Weather, Weather_Chart)
+Number C02_Sensor_Min               "Todays Minimum [%.1f ppm]"                  <carbondioxide>       (Weather, Weather_Chart)
+Number C02_Sensor_Chart_Period      "Chart Period"
+DateTime CO2_LastUpdate             "Last Update [%1$ta %1$tR]"        <clock>
+
+/* Outdoor Temperatures */
+Number Weather_Temperature_out     "Temperature (Aussen) [%.1f °C]"    <temperature>        (Weather, Weather_Chart)  
+Number Weather_Temp_Max            "Todays Maximum [%.1f °C]"          <temperature>        (Weather, Weather_Chart)
+Number Weather_Temp_Min            "Todays Minimum [%.1f °C]"          <temperature>        (Weather, Weather_Chart)
+Number Weather_Chart_Period        "Chart Period"
+DateTime Weather_LastUpdate        "Last Update [%1$ta %1$tR]"         <clock>
+
+/* Outdoor Windspeed */
+Number Weather_Windspeed_out          "Windgeschwindigkeit [%.1f m/s]"     <wind>       (Weather, Weather_Chart)            { channel="knx:device:bridge:generic1:outdoorWindSpeed" }
+Number Weather_Windspeed_Max          "Todays Maximum [%.1f m/s]"          <wind>       (Weather, Weather_Chart)
+Number Weather_Windspeed_Min          "Todays Minimum [%.1f m/s]"          <wind>       (Weather, Weather_Chart)
+Number Windspeed_Chart_Period         "Chart Period"
+DateTime Windspeed_LastUpdate         "Last Update [%1$ta %1$tR]"         <clock>
+
+/* Outdoor Rain */
+Number Weather_Rain_out             "Regen [%.1f ml]"                  <rain>       (Weather, Weather_Chart)                { channel="knx:device:bridge:generic1:outdoorRainThreshold" }
+Number Weather_Rain_Max             "Todays Maximum [%.1f ml]"         <rain>       (Weather, Weather_Chart)
+Number Weather_Rain_Min             "Todays Minimum [%.1f ml]"         <rain>       (Weather, Weather_Chart)
+Number Weather_Rain_Chart_Period    "Chart Period"
+DateTime Rain_LastUpdate            "Last Update [%1$ta %1$tR]"        <clock>
+
+/* Energy Data PV Dach*/
+
+Number PV_Dach_Holding_Reg5B14_int32          "PV Dach 80P1 [%.1f]"                                (PV_Dach)              { channel="modbus:data:localhostTCP_3:holding:holding5B14:number"}
+
+Number Backoffen_Holding_Reg5B14_int32        "Backoffen 100P1 [%.1f]"          <smoke>            (Hausgeraete)          { channel="modbus:data:localhostTCP_5:holding:holding5B14:number"}
+Number Rechaud_Holding_Reg5B14_int32          "Rechaud 110P1 [%.1f]"            <fire>             (Hausgeraete)          { channel="modbus:data:localhostTCP_6:holding:holding5B14:number"}
+Number Waschmaschine_Holding_Reg5B14_int32    "Waschmaschine 120P1 [%.1f]"      <washingmachine>   (Hausgeraete)          { channel="modbus:data:localhostTCP_7:holding:holding5B14:number"}
+Number Tumbler_Holding_Reg5B14_int32          "Tumbler 124P1 [%.1f]"            <dryer>            (Hausgeraete)          { channel="modbus:data:localhostTCP_8:holding:holding5B14:number"}
+Number Geschirrspueller_Holding_Reg5B14_int32 "Geschirrspüller 124P1 [%.1f]"                       (Hausgeraete)          { channel="modbus:data:localhostTCP_9:holding:holding5B14:number"}
+Number Kuehlschrank_Holding_Reg5B14_int32     "Kuehlschrank 140P1 [%.1f]"                          (Hausgeraete)          { channel="modbus:data:localhostTCP_10:holding:holding5B14:number"}
+
+
+
+/* current time */
+DateTime CurrentDate            "Date [%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"   <calendar>  { channel="ntp:ntp:demo:dateTime" }
