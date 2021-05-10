@@ -40,6 +40,23 @@ sitemap geeLive label="GEE Live"
 			}
 		}
 	}
+	Frame label="Energiemanagement" {
+		Text item=Current_EnergyProduction {
+			Text item=Current_EnergyProduction_SolarRoof
+			Text item=Current_EnergyProduction_SolarSide
+		}
+		Text item=Current_EnergyConsumption {
+			Text item=Current_EnergyConsumption_WashingMachine
+			Text item=Current_EnergyConsumption_Dishwasher
+			Text item=Current_EnergyConsumption_Dryer
+			Text item=Current_EnergyConsumption_LightsOutside
+		}
+		Text item=Current_StorageCapacity
+		Text item=Current_EnergySum
+		Text label="Details" icon=settings {
+			Webview url="http://192.168.10.99/" height=20 icon=none
+		}
+	}
 	Frame label="Energiedaten" {
 		Text label="Energieproduktion" icon="heating" {
 			

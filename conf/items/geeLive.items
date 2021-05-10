@@ -67,8 +67,21 @@ Number Weather_Rain_Min             "Todays Minimum [%.1f ml]"         <rain>   
 Number Weather_Rain_Chart_Period    "Chart Period"
 DateTime Rain_LastUpdate            "Last Update [%1$ta %1$tR]"        <clock>
 
-/* Energy Data PV Dach*/
 
+/* Energy Values from the OpenEnergize Energy Management */
+Number Current_EnergySum                        "Energiebilanz [%.1f W]"          <heating>        (Energy) { http="<[http://192.168.10.99/api/totals/:60000:JSONPATH($.energySum)]" }
+Number Current_EnergyProduction                 "Energieproduktion [%.1f W]"      <solarplant>     (Energy) { http="<[http://192.168.10.99/api/totals/:60000:JSONPATH($.totalEnergyProduction)]" }
+Number Current_EnergyProduction_SolarRoof       "Solarpanel Dach [%.1f W]"        <solarplant>     (Energy) { http="<[http://192.168.10.99/api/producers/0:60000:JSONPATH($.currentProductionInWatt)]" }
+Number Current_EnergyProduction_SolarSide       "Solarpanel Fassade [%.1f W]"     <solarplant>     (Energy) { http="<[http://192.168.10.99/api/producers/1:60000:JSONPATH($.currentProductionInWatt)]" }
+Number Current_EnergyConsumption                "Energieverbrauch [%.1f W]"       <poweroutlet>    (Energy) { http="<[http://192.168.10.99/api/totals/:60000:JSONPATH($.totalEnergyConsumption)]" }
+Number Current_EnergyConsumption_WashingMachine "Waschmaschine [%.1f W]"          <washingmachine> (Energy) { http="<[http://192.168.10.99/api/consumers/1:60000:JSONPATH($.currentConsumptionInWatt)]" }
+Number Current_EnergyConsumption_Dishwasher     "Geschirrspueler [%.1f W]"        <whitegood>      (Energy) { http="<[http://192.168.10.99/api/consumers/2:60000:JSONPATH($.currentConsumptionInWatt)]" }
+Number Current_EnergyConsumption_Dryer          "Tumber [%.1f W]"                 <dryer>          (Energy) { http="<[http://192.168.10.99/api/consumers/7:60000:JSONPATH($.currentConsumptionInWatt)]" }
+Number Current_EnergyConsumption_LightsOutside  "Aussenlicht [%.1f W]"            <lightbulb>      (Energy) { http="<[http://192.168.10.99/api/consumers/9:60000:JSONPATH($.currentConsumptionInWatt)]" }
+Number Current_StorageCapacity                  "Batteriespeicher [%.1f Prozent]" <battery>        (Energy) { http="<[http://192.168.10.99/api/storages/:60000:JSONPATH($[0].currentStorageCapacityInPercent)]" }
+
+
+/* Energy Data PV Dach*/
 Number PV_Dach_Holding_Reg5B14_int32          "PV Dach 80P1 [%.1f]"                                (PV_Dach)              { channel="modbus:data:localhostTCP_3:holding:holding5B14:number"}
 
 Number Backoffen_Holding_Reg5B14_int32        "Backoffen 100P1 [%.1f]"          <smoke>            (Hausgeraete)          { channel="modbus:data:localhostTCP_5:holding:holding5B14:number"}
